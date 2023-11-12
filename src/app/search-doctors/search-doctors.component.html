@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <style>
+      
+      #map {
+            /* Add your map styles here */
+            width: 100%;
+            height: 400px; /* Adjust the height as needed */
+        }
+    </style>
+    <title>Your Search Page</title>
+</head>
+<body class="bg-gray-100">
+
+   <!-- Top Section with Filters -->
+   <div class="bg-white p-4">
+    <!-- Add your filter elements here -->
+    <label class="mr-4">
+        Speciality:
+        <select class="ml-2 border p-2 rounded">
+            <option value="cardiologist">Cardiologist</option>
+            <option value="dentist">Dentist</option>
+            <!-- Add more options as needed -->
+        </select>
+    </label>
+    <label>
+        Location:
+        <input type="text" class="ml-2 border p-2 rounded" placeholder="Enter location">
+    </label>
+    
+</div>
+
+<!-- Main Content Area with Doctor Cards and Map -->
+<div class="flex">
+    <!-- Left Section with Doctor Cards -->
+    <div class="w-1/2 p-4">
+        <!-- Doctor Card 1 -->
+        <div class="doctor flex items-center justify-left bg-white p-4 rounded-lg shadow-md border-b">
+            <div class="dimage w-1/12 overflow-hidden">
+                <img src="../../assets/doctor1.jpg" alt="Doctor Image" class="w-full h-full object-cover rounded-full border-2 border-gray-200">
+            </div>
+            <div class="info ml-4">
+                <a href="#" class="text-2xl font-bold text-gray-800 hover:underline">Dr. John Doe</a>
+                <p class="text-gray-600">Cardiologist</p>
+                <p class="text-gray-600">123 Main Street, Cityville</p>
+                <button class="mt-2 bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600">Book Appointment</button>
+            </div>
+        </div>
+
+        <!-- Doctor Card 2 (Add more as needed) -->
+        <div class="doctor flex items-center justify-left bg-white p-4 rounded-lg shadow-md border-b">
+            <div class="dimage w-1/12 overflow-hidden">
+                <img src="../../assets/doctor2.jpg" alt="Doctor Image" class="w-full h-full object-cover rounded-full border-2 border-gray-200">
+            </div>
+            <div class="info ml-4">
+                <a href="#" class="text-2xl font-bold text-gray-800 hover:underline">Dr. Jane Smith</a>
+                <p class="text-gray-600">Dentist</p>
+                <p class="text-gray-600">456 Oak Street, Townsville</p>
+                <button class="mt-2 bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600">Book Appointment</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Section with Map -->
+    <div class="w-1/2 p-4">
+    </div>
+</div>
+
+
+</body>
+</html>
