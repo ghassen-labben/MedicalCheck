@@ -1,0 +1,41 @@
+<!-- login.component.html -->
+
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-sky-50 to-gray-200">
+  <div class="bg-white rounded-xl shadow-xl p-6 sm:p-16 w-full max-w-md">
+    <div class="text-center">
+      <h2 class="mt-2 text-2xl text-cyan-900 font-bold">Sign in to unlock the best of MedicalCheck</h2>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="mt-8 space-y-4">
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+        <input type="email" id="email" name="username" formControlName="email"
+          class="mt-1 p-2 w-full border rounded-md">
+      </div>
+
+      <div>
+        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+        <input type="password" id="password" name="password" formControlName="password"
+          class="mt-1 p-2 w-full border rounded-md">
+      </div>
+
+      <div class="mt-8 grid gap-4">
+        <button type="button"
+          class="group h-12 px-6 border-2 border-gray-300 rounded-full transition duration-300 hover:border-blue-400 focus:bg-blue-50 active:bg-blue-100">
+          <div class="relative flex items-center space-x-4 justify-center">
+            <img src="https://tailus.io/sources/blocks/social/preview/images/google.svg" class="absolute left-0 w-5"
+              alt="google logo">
+            <span
+              class="block w-max font-semibold tracking-wide text-gray-700 text-sm transition duration-300 group-hover:text-blue-600 sm:text-base">Continue with Google</span>
+          </div>
+        </button>
+
+        <button type="submit"
+          class="group h-12 px-6 border-2 border-gray-300 rounded-full transition duration-300 hover:border-blue-400 focus:bg-blue-50 active:bg-blue-100">
+          <span
+            class="block text-center w-full font-semibold tracking-wide text-gray-700 text-sm transition duration-300 group-hover:text-blue-600">Submit</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

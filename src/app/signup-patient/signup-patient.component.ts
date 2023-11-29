@@ -1,31 +1,34 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../services/auth.service';
-import { HttpBackend, HttpClient } from '@angular/common/http';
-import { HttpEventType } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Location } from '@angular/common';
-
+import { PatientAuthService } from '../services/patient-auth.service';
 @Component({
-  selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss'],
+  selector: 'app-signup-patient',
+  templateUrl: './signup-patient.component.html',
+  styleUrls: ['./signup-patient.component.scss']
 })
-export class SignupComponent implements OnInit {
+export class SignupPatientComponent {
   imagePreview: string | ArrayBuffer | null = null;
   registerForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor(private fb: FormBuilder, private authService: PatientAuthService, private router: Router) {
   }
-
-
+  tunisianGovernorates:any;
 
   ngOnInit() {
+    
+  this.tunisianGovernorates = [
+    "Tunis", "Ariana", "Ben Arous", "Manouba", "Nabeul", "Zaghouan", "Bizerte", "Beja", "Jendouba",
+    "Kef", "Siliana", "Kairouan", "Kasserine", "Sidi Bouzid", "Gabes", "Medenine", "Tataouine", "Gafsa",
+    "Sfax", "Tozeur", "Kebili"
+  ];
     this.registerForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(3)]],
       name: ['', Validators.required],
       phone: ['', Validators.required],
+      governorat: ['', Validators.required],
+      gender: ['', Validators.required],
       avatar: [],
       latitude: [''], // Initialize with an empty string, will be updated later
       longitude: [''], // Initialize with an empty string, will be updated later
@@ -52,7 +55,7 @@ export class SignupComponent implements OnInit {
       console.error('Geolocation is not supported by this browser.');
     }
   }
- 
+
   onFileChange(event: any) {
     const file = <File>event.target.files[0];
 
@@ -67,12 +70,12 @@ export class SignupComponent implements OnInit {
   }onSubmit() {
     // Get the form value
     const formValue = this.registerForm.value;
+    console.log(formValue);
     this.authService.register(formValue).subscribe((data) => { 
       console.log(data);
       if (data) {
-        // Redirect to login page
-        //this.router.navigate(['/login']);
-        this.router.navigate(['/doctors/login']);
+        console.log("salam");
+        this.router.navigate(['/patients/login']);
         console.log("success");
       } else {
         // Show an error

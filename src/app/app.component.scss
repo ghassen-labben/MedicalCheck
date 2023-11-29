@@ -1,0 +1,6 @@
+/* app.component.css */
+.blur {
+    filter: blur(5px); /* Apply blur effect to the entire page content */
+    pointer-events: none; /* Disable pointer events on the blurred background */
+  }
+  

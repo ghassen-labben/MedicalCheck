@@ -218,7 +218,7 @@
 		<!-- Right side NavBar -->
 		<div class="flex items-center justify-end relative">
 			<!-- Info -->
-			<a href="#" class="relative mx-8" (click)="toggleNotificationList()">
+			<button class="relative mx-8" (click)="toggleNotificationList()">
 			  <!-- Left side -->
 			  <span>
 				<svg class="h-5 w-5 hover:text-red-600" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -230,7 +230,7 @@
 			  <div class="absolute w-2 h-2 left-0 mb-6 ml-2 bottom-0">
 				<span class="px-2 py-1 bg-red-600 rounded-full text-white text-xs">{{ notifications.length }}</span>
 			  </div>
-			</a>
+			</button>
 		  
 			<div class="flex items-center">
 			  <!-- Right side -->

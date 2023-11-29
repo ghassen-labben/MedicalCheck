@@ -8,6 +8,7 @@ import { Map, Control, DomUtil, ZoomAnimEvent , Layer, MapOptions, tileLayer, la
 })
 export class MapComponent  implements OnInit, OnDestroy {
 
+  @Input() doctors: any;
 
   onMapZoomEnd(e: LeafletEvent) {
     // Check if the event is a ZoomAnimEvent
@@ -39,6 +40,7 @@ export class MapComponent  implements OnInit, OnDestroy {
     }
   
     ngOnInit() {
+      console.log(this.doctors,"sdqsd")
     }
   
     ngOnDestroy() {
@@ -46,7 +48,7 @@ export class MapComponent  implements OnInit, OnDestroy {
       this.map.remove();
     };
     onMapReady(map: Map) {
-     
+
 
       console.log('Map ready:', map);
       this.map = map;
@@ -66,9 +68,14 @@ export class MapComponent  implements OnInit, OnDestroy {
         iconAnchor: [16, 32],  // Adjust the anchor point if needed
         popupAnchor: [0, -32]  // Adjust the popup anchor if needed
       });
-    const benArousMarker = marker([36.7528, 10.2079], { icon: customIcon }).addTo(map);
-      benArousMarker.bindPopup('Place in Ben Arous');
-      const tunisMarker = marker([36.8065, 10.1815], { icon: customIcon }).addTo(map);
+       var markers=[];
+       var i=0;
+      for (let doctor of this.doctors) {
+        console.log(doctor)
+        markers.push(marker([doctor.latitude, doctor.longitude], { icon: customIcon }).addTo(this.map));
+        markers[i++].bindPopup("Dr. "+doctor.name);
+      }
+   
 
       this.zoom = map.getZoom();
       this.zoom$.emit(this.zoom);

@@ -78,6 +78,7 @@
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
             "browserTarget": "MedicalCheck2:build"
+
           }
         },
         "test": {

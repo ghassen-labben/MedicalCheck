@@ -11,6 +11,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './signup/signup.component';
 import { PatientDashboardComponent } from './patient-dashboard/patient-dashboard.component';
 import { ChatComponent } from './chat/chat.component';
+import { ProfileComponent } from './profile/profile.component';
+import { Routes } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
+import { NavComponent } from './nav/nav.component';
+import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
+import { DoctorDashboardComponent } from './doctor-dashboard/doctor-dashboard.component';
+import { SignupPatientComponent } from './signup-patient/signup-patient.component';
+import { LoginPatientComponent } from './login-patient/login-patient.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,16 +29,27 @@ import { ChatComponent } from './chat/chat.component';
     MapComponent,
     SignupComponent,
     PatientDashboardComponent,
-    ChatComponent
+    ChatComponent,
+    ProfileComponent,
+    NavComponent,
+    LoginComponent,
+    DoctorDashboardComponent,
+    SignupPatientComponent,
+    LoginPatientComponent
+
   ],
   imports: [
     FormsModule,
     LeafletModule,
     BrowserModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AppRoutingModule,
+    HttpClientModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
+  
 })
 export class AppModule { }

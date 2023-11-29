@@ -1,0 +1,6 @@
+/* profile.component.css */
+.blur-background {
+    filter: blur(5px); /* Apply blur effect to the background */
+    pointer-events: none; /* Disable pointer events on the blurred background */
+  }
+  

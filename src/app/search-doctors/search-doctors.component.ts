@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { DoctorService } from '../services/doctor.service';
 
 @Component({
   selector: 'app-search-doctors',
@@ -19,5 +20,26 @@ export class SearchDoctorsComponent {
   
     console.log('Filter by speciality:', this.selectedSpeciality);
     // Add logic to filter doctors based on the selected speciality
+  }
+  doctors: any=this.getDoctors();
+  
+  constructor(private doctorService: DoctorService) { }
+
+  ngOnInit(): void {
+    this.getDoctors();
+  }
+
+  getDoctors(): void {
+    this.doctorService.getAllDoctors()
+      .subscribe(
+        (doctors: any) => {
+          this.doctors = doctors;
+          console.log(doctors);
+        },
+        (error) => {
+          console.error('Error fetching doctors:', error);
+          // Handle the error as needed
+        }
+      );
   }
 }
