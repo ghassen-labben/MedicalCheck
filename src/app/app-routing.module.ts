@@ -17,6 +17,7 @@ import { JitsiComponent } from './jitsi/jitsi.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },  
+  
   {
   path: 'doctors',
   children: [

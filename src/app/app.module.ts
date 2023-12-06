@@ -22,6 +22,7 @@ import { DoctorDashboardComponent } from './doctor-dashboard/doctor-dashboard.co
 import { SignupPatientComponent } from './signup-patient/signup-patient.component';
 import { LoginPatientComponent } from './login-patient/login-patient.component';
 import { JitsiComponent } from './jitsi/jitsi.component';
+import { ThankYouComponent } from './thank-you/thank-you.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { JitsiComponent } from './jitsi/jitsi.component';
     SignupPatientComponent,
     LoginPatientComponent,
     JitsiComponent,
+    ThankYouComponent,
     
 
 

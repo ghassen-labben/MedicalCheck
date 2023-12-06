@@ -38,7 +38,7 @@
          <!-- Assuming m.date_time is a Date object -->
          <p class="text-gray-600">{{ m.date_time | date:'EEEE, dd MMMM yyyy' | titlecase }}</p>
          <p class="text-gray-600"><i class="fa fa-time"></i> {{ m.date_time | date:'hh:mm a' }}</p>
-         <a class="text-gray-500  font-semibold hover:underline hover:text-green-400"  [routerLink]="['/meeting',m.jitsiRoom ]">Join Meet</a>
+         <a class="text-gray-500  font-semibold hover:underline hover:text-green-400"  [routerLink]="['/meeting',m._id ]">Join Meet</a>
          
          
          
