@@ -94,5 +94,18 @@ export class HomeComponent implements OnInit {
     "Urologie",
    
   ];
- 
+  filterBySpeciality(sp: any){
+    this.router.navigate(['/search'], {
+      queryParams: {
+        specialty: sp
+      }
+    });
+  }
+  filterByGovernorate(gov: any){
+    this.router.navigate(['/search'], {
+      queryParams: {
+        governorate: gov
+      }
+    });
+  }
 }

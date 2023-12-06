@@ -4,9 +4,9 @@
 		<!-- Left side NavBar -->
 
 		<div>
-			<!-- App Logo -->
+			<a href="/">			<img src="../../assets/logo.svg" alt="">
+			</a>
 
-			<img src="../../assets/logo.svg" alt="">
 
 		</div>
 
@@ -25,19 +25,7 @@
 
 			</li>
 
-			<li [ngClass]="{'mt-3 p-2 text-blue-600  rounded-lg':chatOpen,'text-gray-400':!chatOpen}" (click)="open(true)">
-				<a href="#" class=" flex flex-col items-center">
-					<svg class="fill-current h-5 w-5" viewBox="0 0 24 24">
-						<path d="M23 3v-.5a2.5 2.5 0 00-5 0V3c-.55 0-1 .45-1 1v4c0
-							.55.45 1 1 1h5c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1m-1
-							0h-3v-.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5V3M6
-							11h9v2H6v-2m0-4h9v2H6V7m16 4v5c0 1.11-.89 2-2 2H6l-4
-							4V4a2 2 0 012-2h11v2H4v13.17L5.17 16H20v-5h2z"></path>
-					</svg>
-					<span class="text-xs mt-2">messages</span>
-				</a>
-
-			</li>
+			
 
 
 
@@ -187,15 +175,21 @@
 
 				<div class="flex flex-col items-center mt-12">
 					<ng-container *ngIf="appointments.length; else emptyState">
-						<ul class="text-left">
-							<li *ngFor="let appointment of appointments" class="mb-4 flex justify-around items-center">
-								<img src="../../assets/doctorimage.png" alt="Doctor Image"
-									class="w-16 h-16 rounded-full mx-8">
-								<div class="font-semibold">Time: {{ appointment.time }}</div>
-								<div class="text-gray-700">Doctor: {{ appointment.doctor }}</div>
-								<div class="text-purple-500">Purpose: {{ appointment.purpose }}</div>
+						<ul class="text-left space-y-4 w-11/12	">
+							<li *ngFor="let appointment of appointments" class="bg-white p-6 rounded-lg shadow-md">
+							  <div class="flex items-center mb-2">
+								<img [src]="loadImage(appointment.doctor)" alt="Doctor Image" class="w-16 h-16 rounded-full mx-4">
+								<div class="flex flex-col">
+								  <div class="font-semibold">Time: {{ appointment.date_time | date: 'short' }}</div>
+								  <div class="text-gray-700">Doctor: {{ appointment.doctor.name }}</div>
+								</div>
+							  </div>
+							  <div class="text-purple-500">Purpose: {{ appointment.purpose }}</div>
+							  <a class="text-gray-500  font-semibold hover:underline hover:text-green-400"  [routerLink]="['/meeting',appointment._id]">Join Meet</a>
+
 							</li>
-						</ul>
+						  </ul>
+						  
 					</ng-container>
 
 					<!-- Empty state content -->
@@ -235,7 +229,7 @@
 			<div class="flex items-center">
 			  <!-- Right side -->
 			  <img class="h-10 w-10 rounded-full object-cover"
-				src="https://i.pinimg.com/originals/68/e1/e1/68e1e137959d363f172dc3cc50904669.jpg"
+				[src]="loadImage(user)"
 				alt="tempest profile" />
 			  <button class="ml-1 focus:outline-none">
 				<svg class="h-4 w-4 fill-current" viewBox="0 0 192 512">
@@ -246,19 +240,27 @@
 			  </button>
 			</div>
 		  
-			<!-- Notification List -->
-<!-- Notification List -->
+
 <div class="w-full absolute top-0 right-0 p-4 border border-gray-300 rounded shadow-lg bg-white mt-12"
   [@fadeInOut]="notificationOpened ? 'in' : 'out'" *ngIf="notificationOpened">
   <p class="font-bold text-2xl">Notifications</p>
-  <div class="flex items-center p-4 bg-white mx-auto max-w-sm relative " *ngFor="let notification of notifications">
-    <span class="text-xs font-bold uppercase px-2 mt-2 mr-2 text-green-900 bg-green-400 border rounded-full absolute top-0 right-0">New</span>
-    <span class="text-xs font-semibold uppercase m-1 py-1 mr-3 text-gray-500 absolute bottom-0 right-0">4:36 PM</span>
-    <div class="ml-5">
-        <h4 class="text-lg font-semibold leading-tight text-gray-900">{{notification}}</h4>
-        <p class="text-sm text-gray-600">{{notification}}</p>
+  <div class="flex flex-col sm:flex-row items-center my-4 bg-white mx-auto max-w-sm relative" *ngFor="let notification of notifications">
+    <div class="rounded-full overflow-hidden mb-3 sm:mb-0 sm:mr-2">
+        <img [src]="loadImage(notification.doctor)" alt="User Avatar" class=" object-cover mx-1 rounded-full w-14 h-12">
     </div>
-  </div>
+    <div class="flex flex-col sm:flex-row justify-between w-full">
+        <div class="ml-5 mb-2 sm:mb-0">
+            <h4 class="text-lg font-semibold leading-tight text-gray-900">{{notification.subject}}</h4>
+            <p class="text-sm text-gray-600">{{notification.content}}</p>
+        </div>
+        <div class="flex flex-col items-end">
+            <span class="text-xs font-bold uppercase px-2 mt-2 mr-2 text-green-900 bg-green-400 border rounded-full mb-1 sm:mb-0 sm:mt-0">New</span>
+            <span class="text-xs font-semibold uppercase m-1 py-1 mr-3 text-gray-500">{{notification.date_time | date: 'shortTime'}}</span>
+        </div>
+    </div>
+</div>
+
+
   <div *ngIf="notifications.length === 0 && notificationOpened" class="no-notifications mt-4 text-gray-500">No notifications</div>
 </div>
 
@@ -270,14 +272,7 @@
 		<span class="mt-4 text-gray-600">Global Etat</span>
 		<span class="mt-1 text-3xl font-semibold">Good</span>
 
-		<!-- Make Appointment Button -->
-		<button class="mt-8 flex items-center py-4 px-3 text-white rounded-lg bg-green-400 shadow focus:outline-none">
-			<svg class="h-5 w-5 fill-current mr-2 ml-3" viewBox="0 0 24 24">
-				<path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path>
-			</svg>
-			<span>Make appointment</span>
-		</button>
-
+	
 		<!-- Prescription and Medication Status -->
 		<div class="mt-12 flex items-center">
 			<span>Prescription and Medication Status: </span>
@@ -289,28 +284,34 @@
 				</svg>
 			</button>
 		</div>
-		<!-- Medication Item -->
-		<div *ngIf="!hideElement" [@changeColorAndDestroy]="checkboxChecked ? 'checked' : 'unchecked'"
-			(click)="onChange()"
-			[ngClass]="{'mt-8 p-4 flex justify-between  rounded-lg font-semibold capitalize': true} ">
-			<div class="flex items-center ">
-				<img class="h-10 w-10 rounded-full object-cover" src="" alt="veldora profile" />
-				<div class="flex flex-col ml-4">
-					<span>Panadole</span>
-					<span class="text-sm text-gray-600"></span>
-				</div>
+	<!-- Medication Item -->
+	<div *ngFor="let or of ordenances; let i = index">
+		<div *ngIf="hideElements[i]" [@changeColorAndDestroy]="getAnimationState(i)" 
+			 (click)="onChange(i)"
+			 [ngClass]="{'mt-8 p-4 flex justify-between  rounded-lg font-semibold capitalize': true}">
+	  
+		  <div class="flex items-center">
+			<img class="h-10 w-10 rounded-full object-cover" [src]="loadImage(or.doctor)" alt="veldora profile" />
+			<div class="flex flex-col ml-4">
+			  <span>{{or.medicaments}}</span>
+			  <span class="text-sm text-gray-600">{{or.Duree}}</span>
 			</div>
-
-			<!-- Checkbox for medication status -->
-			<div class="flex items-center">
-				<label class="inline-flex items-center ml-4">
-					<input type="checkbox" [(ngModel)]="checkboxChecked" class="form-checkbox h-5 w-5 text-blue-600">
-					<span class="ml-2 text-gray-700">Taken</span>
-				</label>
-			</div>
-
-
+		  </div>
+	  
+		  <!-- Checkbox for medication status -->
+		  <div class="flex items-center">
+			<label class="inline-flex items-center ml-4">
+			  <input type="checkbox" [(ngModel)]="isChecked[i]" class="form-checkbox h-5 w-5 text-blue-600">
+			  <span class="ml-2 text-gray-700">Taken</span>
+			</label>
+		  </div>
 		</div>
+	  
+		
+	  </div>
+	  
+
+  
 
 		<!-- See All Medications Button -->
 		<div class="mt-4 flex justify-center capitalize text-blue-600">

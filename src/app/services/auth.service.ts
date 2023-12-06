@@ -13,12 +13,17 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/doctors/register`, userData);
   }
   login(credentials: { email: string; password: string }): Observable<any> {
-    localStorage.setItem('type', 'doctor');
+    localStorage.setItem('type', 'doctors');
     return this.http.post(`${this.apiUrl}/doctors/login`, credentials);
   }
   isUserDoctor():boolean{
-    return localStorage.getItem('type') === 'doctor';
+    return localStorage.getItem('type') === 'doctors';
   } 
+  logout(): void { 
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('type');
+  localStorage.removeItem('User');
+  }
   constructor(private http: HttpClient) {}
 
  

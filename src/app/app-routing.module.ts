@@ -13,27 +13,30 @@ import { SignupPatientComponent } from './signup-patient/signup-patient.componen
 import { LoginPatientComponent } from './login-patient/login-patient.component';
 import { DoctorAuthGuard } from './doctor-auth.guard';
 import { PatientAuthGuard } from './patient-auth.guard';
+import { JitsiComponent } from './jitsi/jitsi.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },  
   {
-  path: 'doctors',canActivate: [DoctorAuthGuard],
+  path: 'doctors',
   children: [
     { path: 'register', component: SignupComponent },
     { path: 'login', component: LoginComponent },
-    { path: 'dashboard', component: DoctorDashboardComponent },
-    { path: 'profile', component: ProfileComponent },
+    { path: 'dashboard', component: DoctorDashboardComponent ,canActivate: [DoctorAuthGuard]},
+    { path: 'profile', component: ProfileComponent ,canActivate: [DoctorAuthGuard]},
+    
     // Add other doctor-related routes as needed
   ]},
   {
-  path: 'patients', canActivate: [PatientAuthGuard],
+  path: 'patients',
   children: [
     { path: 'register', component: SignupPatientComponent },
     { path: 'login', component: LoginPatientComponent },
-    {path:'dashboard',component:PatientDashboardComponent},// About route
-    { path: 'profile', component: ProfileComponent },
+    {path:'dashboard',component:PatientDashboardComponent, canActivate: [PatientAuthGuard]},// About route
+    { path: 'profile', component: ProfileComponent, canActivate: [PatientAuthGuard] },
   ]},
   { path: 'search', component: SearchDoctorsComponent },
+{path:'meeting/:id', component:JitsiComponent},
   { path: '**', redirectTo: '' }, 
 
 ];

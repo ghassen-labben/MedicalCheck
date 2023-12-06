@@ -1,0 +1,24 @@
+<div id="jitsi-iframe" class="items-center flex justify-center h-screen	w-screen"></div>
+
+<!-- Custom Controls -->
+<div class="controls-container flex justify-center items-center mt-4">
+    <div class="controls-label text-center">
+        <span class="text-gray-600 text-sm">Custom Controls</span>
+    </div>
+
+    <div class="controls flex items-center space-x-4">
+        <i (click)="executeCommand('toggleAudio')" class="fas fa-2x control-icon cursor-pointer text-blue-500" 
+           [ngClass]="isAudioMuted ? 'fa-microphone-slash' : 'fa-microphone'" 
+           aria-hidden="true" title="Mute / Unmute"></i>
+        
+        <i (click)="executeCommand('hangup')" class="fas fa-phone-slash fa-2x control-icon cursor-pointer text-red-500" 
+           aria-hidden="true" title="Leave"></i>
+        
+        <i (click)="executeCommand('toggleVideo')" class="fas fa-2x control-icon cursor-pointer text-blue-500" 
+           [ngClass]="isVideoMuted ? 'fa-video-slash' : 'fa-video'" 
+           aria-hidden="true" title="Start / Stop camera"></i>
+        
+        <i (click)="executeCommand('toggleShareScreen')" class="fas fa-film fa-2x control-icon cursor-pointer text-blue-500" 
+           aria-hidden="true" title="Share your screen"></i>
+    </div>
+</div>

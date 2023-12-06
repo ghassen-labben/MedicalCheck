@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeComponent } from '../home/home.component';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-nav',
@@ -8,7 +9,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent implements OnInit {
-  constructor( private http: HttpClient)
+  constructor( private http: HttpClient,private authService:AuthService)
 {}
 authToken = localStorage.getItem('authToken') || '';
 headers = new HttpHeaders().set('Authorization', `Bearer ${this.authToken}`);
@@ -50,7 +51,10 @@ toggleMobileMenu() {
 closeMobileMenu() {
   this.showMobileMenu = false;
 }
-
+logout(){
+  this.authService.logout();
+  this.ngOnInit();
+}
 // Example properties and methods for the dropdowns
 showSignInDropdown: boolean = false;
 showSignUpDropdown: boolean = false;

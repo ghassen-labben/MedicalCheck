@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
 
           // Save the authentication token and user type in local storage
           localStorage.setItem('authToken', token.toString());
-          localStorage.setItem('type', 'doctor');
+          localStorage.setItem('type', 'doctors');
 
           // Navigate to the home route after successful login
           this.router.navigate(['/']);

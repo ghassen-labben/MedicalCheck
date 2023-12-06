@@ -11,10 +11,11 @@ import { HttpClient } from '@angular/common/http';
 export class ProfileComponent implements OnInit  {
   profileForm!: FormGroup; // Declare profileForm as a FormGroup
   uploadProgress!: number;
-  modelOpen=true;
+  modelOpen=false;
   constructor(private formBuilder: FormBuilder,private http:HttpClient) {}
   ngOnInit(): void {
     this.User=JSON.parse(localStorage.getItem('User') || '{}');
+    console.log(this.User.avatar); 
     this.image=`http://localhost:8000/uploads/users/avatars/${this.User.avatar}`;
   }
 type=localStorage.getItem('type') || '';
@@ -54,12 +55,13 @@ image:any;
     }
 
     // Replace the URL with your backend API endpoint
-    const apiUrl = 'http://localhost:8000/patients/update';
+    const apiUrl = `http://localhost:8000/${this.type}/update`;
     
     // Make an HTTP request to upload the file and update the profile
-    this.http.post('http://localhost:8000/patients/update/65677f42345f741ce50d611a', formData).subscribe(
+    this.http.post(`${apiUrl}/${this.User.id}`, formData).subscribe(
       (response) => {
         console.log('Profile updated successfully:', response);
+        localStorage.setItem('User', JSON.stringify(response));
         // Handle success, e.g., show a success message to the user
       },
       (error) => {

@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
       .subscribe((event: Event) => {
         // Explicitly cast event to NavigationEnd
         const navEnd = event as NavigationEnd;
-        this.shouldShowNav = !['/register', '/login'].includes(navEnd.url);
+        this.shouldShowNav = !navEnd.url.includes('/patients/dashboard') && !navEnd.url.includes('/doctors/login') && !navEnd.url.includes('/doctors/register') && !navEnd.url.includes('/patients/login') && !navEnd.url.includes('/patients/register')   ;
       });
   }
 }

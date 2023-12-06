@@ -64,8 +64,8 @@ export class MapComponent  implements OnInit, OnDestroy {
     tunisiaLayer.addTo(map);
       const customIcon = icon({
         iconUrl: '../../assets/location.svg',  // Adjust the path to your custom icon image
-        iconSize: [28, 48],  // Adjust the size of your custom icon
-        iconAnchor: [16, 32],  // Adjust the anchor point if needed
+        iconSize: [28, 28],  // Adjust the size of your custom icon
+        iconAnchor: [16, 16],  // Adjust the anchor point if needed
         popupAnchor: [0, -32]  // Adjust the popup anchor if needed
       });
        var markers=[];

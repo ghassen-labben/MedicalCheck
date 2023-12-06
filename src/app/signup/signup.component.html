@@ -58,11 +58,19 @@
         type="text"
         placeholder="Your Phone Number"
       />
-    </div>
+    </div> 
    
- 
+    <select class="p-4 border text-gray-800 border-gray-200 bg-gray-100 w-full  text-lg mb-4" name="" id="" formControlName="governorat">
+
+      <option *ngFor="let g of tunisianGovernorates" [value]="g">{{g}}</option>
+   </select>
 
     
+   <select class="p-4 border text-gray-800 border-gray-200 bg-gray-100   w-full  text-lg mt-2 mb-4 sm:mt-0" name="" id="" formControlName="specialization">
+
+    <option *ngFor="let sp of specialitesMedecins" [value]="sp">{{sp}}</option>
+  </select>
+
     <div class="mb-6">
       <label class="block text-gray-700 mb-6" for="dateOfBirth">Date of  Birth:</label>
       <div class="flex items-center mb-6">

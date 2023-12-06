@@ -19,7 +19,30 @@ export class SignupComponent implements OnInit {
   }
 
 
+  specialitesMedecins = [
+    "Cardiologie",
+    "dentist",
+    "Dermatology",
+    "Gastro-entérologie",
+    "Gynécologie",
+    "Hématologie",
+    "Médecine interne",
+    "Neurologie",
+    "Ophtalmologie",
+    "Orthopédie",
+    "Oto-rhino-laryngologie (ORL)",
+    "Pédiatrie",
+    "Psychiatrie",
+    "Radiologie",
+    "Urologie",
+   
+  ];
 
+  tunisianGovernorates = [
+    "Tunis", "Ariana", "Ben Arous", "Manouba", "Nabeul", "Zaghouan", "Bizerte", "Beja", "Jendouba",
+    "Kef", "Siliana", "Kairouan", "Kasserine", "Sidi Bouzid", "Gabes", "Medenine", "Tataouine", "Gafsa",
+    "Sfax", "Tozeur", "Kebili"
+  ];
   ngOnInit() {
     this.registerForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -27,7 +50,9 @@ export class SignupComponent implements OnInit {
       name: ['', Validators.required],
       phone: ['', Validators.required],
       avatar: [],
-      latitude: [''], // Initialize with an empty string, will be updated later
+      latitude: [''],
+      governorat:['Tunis'],
+      specialization:['dentist'], // Initialize with an empty string, will be updated later
       longitude: [''], // Initialize with an empty string, will be updated later
     });
 
